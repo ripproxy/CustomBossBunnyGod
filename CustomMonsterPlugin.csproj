@@ -14,19 +14,19 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="ModFramework">
-      <HintPath>J:\Downloads\TShock-5.0.0-for-Terraria-1.4.4.7-win-x64-Release\bin\ModFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="OTAPI">
-      <HintPath>J:\Downloads\TShock-5.0.0-for-Terraria-1.4.4.7-win-x64-Release\bin\OTAPI.dll</HintPath>
-    </Reference>
-    <Reference Include="TerrariaServer">
-      <HintPath>J:\Downloads\TShock-5.0.0-for-Terraria-1.4.4.7-win-x64-Release\bin\TerrariaServer.dll</HintPath>
-    </Reference>
-    <Reference Include="TShockAPI">
-      <HintPath>J:\Downloads\TShock-5.0.0-for-Terraria-1.4.4.7-win-x64-Release\ServerPlugins\TShockAPI.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+<ItemGroup>
+  <Reference Include="TShockAPI">
+    <HintPath>bin\Debug\netstandard2.0\TShockAPI.dll</HintPath>
+  </Reference>
+  <Reference Include="TerrariaServer">
+    <HintPath>bin\Debug\netstandard2.0\TerrariaServer.dll</HintPath>
+  </Reference>
+  <Reference Include="OTAPI">
+    <HintPath>bin\Debug\netstandard2.0\OTAPI.dll</HintPath>
+  </Reference>
+  <Reference Include="ModFramework">
+    <HintPath>bin\Debug\netstandard2.0\ModFramework.dll</HintPath>
+  </Reference>
+</ItemGroup>
   <PropertyGroup />
 </Project>
