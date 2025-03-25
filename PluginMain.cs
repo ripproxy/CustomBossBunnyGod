@@ -1290,9 +1290,21 @@ namespace CustomMonsters
                                 CMType.Poisoned = poisoned;
                             break;
                         }
-                    default:
-                        CMType.SpawnMessage = CMFieldAndVal;
+		    case "deathmessage":
+                        {
+                        CMType.DeathMessage = CMFieldAndVal.Split(':')[1];
                         break;
+                        }
+                    case "spawnmessage":
+                        {
+                            string message = CMFieldAndVal.Split(':')[1].Trim();
+                            if (message.StartsWith("\"") && message.EndsWith("\""))
+                            {
+                                message = message.Substring(1, message.Length - 2);
+                            }
+                        CMType.SpawnMessage = message;
+                        break;
+                    }
                 }
             }
 
