@@ -179,6 +179,10 @@ namespace CustomMonsters
                         CustomMonster DeadMonster = CustomMonsters.Find(monster => monster.ID == npcid);
                         if (DeadMonster != null)
                         {
+		            if (!string.IsNullOrEmpty(DeadMonster.CMType.DeathMessage))
+                            {
+                                TShock.Utils.Broadcast(DeadMonster.CMType.DeathMessage, Color.Red);
+                            }
                             if (DeadMonster.CMType.MultiplyOnDeath)
                             {
                                 int killer = e.Msg.whoAmI;
