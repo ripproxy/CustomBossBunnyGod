@@ -187,6 +187,7 @@ namespace CustomMonsters
         internal bool? noGravity { get; set; }
         internal float? Value { get; set; }
         internal string SpawnMessage { get; set; }
+        internal string DeathMessage { get; set; }
 
         internal bool? OnFire { get; set; }
         internal bool? Poisoned { get; set; }
