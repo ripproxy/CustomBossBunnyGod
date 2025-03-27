@@ -495,7 +495,14 @@ namespace CustomMonsters
                         if (Collision.CanHit(Start, 4, 4, Target, Main.player[targetid].width,
                                              Main.player[targetid].height))
                         {
-                            int New = Projectile.NewProjectile(Projectile.GetNoneSource(), Start, velocity, ProjectileDamage, 1);
+                            int New = Projectile.NewProjectile(
+                                Projectile.GetNoneSource(), 
+                                new Vector2(Start.X, Start.Y), 
+                                new Vector2(VelocityX, VelocityY), 
+                                ProjectileType, 
+                                ProjectileDamage, 
+                                1
+                            );
                             Main.projectile[New].SetDefaults(ProjectileType);
                             NetMessage.SendData(27, -1, -1, Terraria.Localization.NetworkText.Empty, New, 0f, 0f, 0f, 0);
                         }
