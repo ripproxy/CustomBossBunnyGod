@@ -487,25 +487,15 @@ namespace CustomMonsters
                     {
                         int targetid = Main.npc[npcid].target;
                         Vector2 Target = Main.player[targetid].position;
-                        Vector2 Start = new Vector2(X + (2*bt.X) + 10, Y + (2*bt.Y) + 23);
-                        //Vector2 Target = Main.player[targetid].position;
-                        //Vector2 Start = new Vector2(X + (2 * bt.X) + 10, Y + (2 * bt.Y) + 23);
-                        float initY = Target.Y - Start.Y;
-                        float initX = Target.X - Start.X;
-                        int parityX = initX < 0 ? -1 : 1;
-                        int parityY = initY < 0 ? -1 : 1;
-                        float VelocityX =
-                            (float) (10*Math.Sqrt(1 - (Math.Pow(initX, 2)/(Math.Pow(initX, 2) + Math.Pow(initY, 2)))))*
-                            parityX;
-                        float VelocityY =
-                            (float) (10*Math.Sqrt(1 - (Math.Pow(initY, 2)/(Math.Pow(initX, 2) + Math.Pow(initY, 2)))))*
-                            parityY;
+                        Vector2 Start = new Vector2(X + (2 * bt.X) + 10, Y + (2 * bt.Y) + 23);
+                        Vector2 direction = Target - Start;
+                        direction.Normalize();
+                        Vector2 velocity = direction * 10;
 
                         if (Collision.CanHit(Start, 4, 4, Target, Main.player[targetid].width,
                                              Main.player[targetid].height))
                         {
-                            int New = Projectile.NewProjectile(Projectile.GetNoneSource(), new Vector2(Start.X, Start.Y), new Vector2(VelocityX, VelocityY), ProjectileType,
-                                                               ProjectileDamage, 1);
+                            int New = Projectile.NewProjectile(Projectile.GetNoneSource(), Start, velocity, ProjectileDamage, 1);
                             Main.projectile[New].SetDefaults(ProjectileType);
                             NetMessage.SendData(27, -1, -1, Terraria.Localization.NetworkText.Empty, New, 0f, 0f, 0f, 0);
                         }
