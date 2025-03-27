@@ -498,7 +498,7 @@ namespace CustomMonsters
                             int New = Projectile.NewProjectile(
                                 Projectile.GetNoneSource(), 
                                 new Vector2(Start.X, Start.Y), 
-                                new Vector2(VelocityX, VelocityY), 
+                                new Vector2(velocity.X, velocity.Y), 
                                 ProjectileType, 
                                 ProjectileDamage, 
                                 1
