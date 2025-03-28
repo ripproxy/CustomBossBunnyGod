@@ -86,6 +86,18 @@ namespace CustomMonsters
             LastSpawn = CustomMonstersPlugin.Init;
         }
     }
+    internal class LootDropData
+    {
+        public int ItemID { get; set; }
+        public int Quantity { get; set; }
+        public int Rate { get; set; }
+        public LootDropData(int itemID, int quantity, int rate)
+        {
+            ItemID = itemID;
+            Quantity = quantity;
+            Rate = rate;
+        }
+    }
     internal class BuffRateandDuration
     {
         public int BuffType { get; set; }
@@ -186,6 +198,7 @@ namespace CustomMonsters
         internal bool? noTileCollide { get; set; }
         internal bool? noGravity { get; set; }
         internal float? Value { get; set; }
+        internal LootDropData LootDrop { get; set; }
         internal string SpawnMessage { get; set; }
         internal string DeathMessage { get; set; }
 
