@@ -179,6 +179,18 @@ namespace CustomMonsters
                         CustomMonster DeadMonster = CustomMonsters.Find(monster => monster.ID == npcid);
                         if (DeadMonster != null)
                         {
+			    if (DeadMonster.CMType.LootDrop != null)
+                            {
+                                LootDropData loot = DeadMonster.CMType.LootDrop;
+                                Random rand = new Random();
+                                if (rand.Next() % loot.Rate == 0)
+                                {
+                                    Item.NewItem(Projectile.GetSource_NaturalSpawn(),
+                                    Main.npc[npcid].getRect(),
+                                    loot.ItemID,
+                                    loot.Quantity);
+                                }
+                            }
 		            if (!string.IsNullOrEmpty(DeadMonster.CMType.DeathMessage))
                             {
                                 TShock.Utils.Broadcast(DeadMonster.CMType.DeathMessage, Color.Red);
@@ -1266,6 +1278,21 @@ namespace CustomMonsters
                             bool noGravity;
                             if (bool.TryParse(CMFieldAndVal.Split(':')[1], out noGravity))
                                 CMType.noGravity = noGravity;
+                            break;
+                        }
+		    case "lootdrop":
+                        {
+                            string[] parts = CMFieldAndVal.Split(':');
+                            if (parts.Length >= 4)
+                            {
+                                int itemID, quantity, rate;
+                                if (int.TryParse(parts[1].Trim(), out itemID) &&
+                                    int.TryParse(parts[2].Trim(), out quantity) &&
+                                    int.TryParse(parts[3].Trim(), out rate))
+                                {
+                                    CMType.LootDrop = new LootDropData(itemID, quantity, rate);
+                                }
+                            }
                             break;
                         }
                     case "value":
