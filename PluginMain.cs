@@ -185,10 +185,8 @@ namespace CustomMonsters
                                 Random rand = new Random();
                                 if (rand.Next() % loot.Rate == 0)
                                 {
-                                    Item.NewItem(Projectile.GetNoneSource(),
-                                    Main.npc[npcid].getRect(),
-                                    loot.ItemID,
-                                    loot.Quantity);
+                                    Rectangle npcRect = Main.npc[npcid].getRect();
+                                    Item.NewItem(npcRect.X, npcRect.Y, npcRect.Width, npcRect.Height, loot.ItemID, loot.Quantity);
                                 }
                             }
 		            if (!string.IsNullOrEmpty(DeadMonster.CMType.DeathMessage))
