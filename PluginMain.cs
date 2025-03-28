@@ -908,22 +908,29 @@ namespace CustomMonsters
 
         private static void HandleBuffers()
         {
+            Random r = new Random();
             List<CustomMonster> Buffers = CustomMonsters.FindAll(CM => CM.CMType.Buffs.Count > 0);
             foreach (CustomMonster buffer in Buffers)
             {
-                List<CMPlayer> BuffThese =
-                    CMPlayers.FindAll(ply => buffer.MainNPC.frame.Intersects(ply.TSPlayer.TPlayer.bodyFrame));
+                Vector2 npcCenter = new Vector2(buffer.MainNPC.position.X + buffer.MainNPC.width / 2,
+                                                buffer.MainNPC.position.Y + buffer.MainNPC.height / 2);
+
+                List<CMPlayer> BuffThese = CMPlayers.FindAll(ply =>
+                {
+                    Vector2 playerCenter = new Vector2(ply.TSPlayer.TPlayer.position.X + ply.TSPlayer.TPlayer.width / 2,
+                                                       ply.TSPlayer.TPlayer.position.Y + ply.TSPlayer.TPlayer.height / 2);
+                    return Vector2.Distance(npcCenter, playerCenter) < 1120;
+                });
                 foreach (CMPlayer buffthis in BuffThese)
                 {
                     foreach (BuffRateandDuration buff in buffer.CMType.Buffs)
                     {
-                        Random r = new Random();
-                        if (r.Next()%buff.Rate == 0)
-                            buffthis.TSPlayer.SetBuff(buff.BuffType, buff.BuffTime);
-                    }
-                }
-            }
-        }
+                        if (r.Next() % buff.Rate == 0)
+                        buffthis.TSPlayer.SetBuff(buff.BuffType, buff.BuffTime);
+                   }
+	      }
+         }
+    }
 
     private static void LoadCustomMonstersFromText()
     {
