@@ -185,7 +185,7 @@ namespace CustomMonsters
                                 Random rand = new Random();
                                 if (rand.Next() % loot.Rate == 0)
                                 {
-                                    Item.NewItem(Projectile.GetSource_NaturalSpawn(),
+                                    Item.NewItem(Projectile.GetNoneSource(),
                                     Main.npc[npcid].getRect(),
                                     loot.ItemID,
                                     loot.Quantity);
