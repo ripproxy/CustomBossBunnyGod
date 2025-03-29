@@ -175,6 +175,13 @@ namespace CustomMonsters
                     int actualdmg = (dmg - Main.npc[npcid].defense/2)*critmultiply;
                     if (actualdmg < 0)
                         actualdmg = 1;
+		    CustomMonster cm = CustomMonsters.Find(monster => monster.ID == npcid);
+                    if (cm != null && cm.CMType.dontTakeDamage.HasValue && cm.CMType.dontTakeDamage.Value)
+                    {
+                        Main.npc[npcid].life += actualdmg;
+                        NetMessage.SendData(23, -1, -1, Terraria.Localization.NetworkText.Empty, npcid, 0f, 0f, 0f, 0);
+                        return;
+                    }
                     if (actualdmg >= Main.npc[npcid].life && Main.npc[npcid].life > 0 && Main.npc[npcid].active)
                     {
                         CustomMonster DeadMonster = CustomMonsters.Find(monster => monster.ID == npcid);
