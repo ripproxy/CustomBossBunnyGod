@@ -188,7 +188,7 @@ namespace CustomMonsters
                                 {
                                     Rectangle npcRect = Main.npc[npcid].getRect();
 				    IEntitySource source = new
-	                            EntitySource_DebugCommand("LootDrop");
+	                            EntitySource_DebugCommand();
                                     Item.NewItem(
                                     source,
                                     npcRect.X,
