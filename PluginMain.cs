@@ -186,7 +186,9 @@ namespace CustomMonsters
                                 if (rand.Next() % loot.Rate == 0)
                                 {
                                     Rectangle npcRect = Main.npc[npcid].getRect();
-                                    Item.NewItem(npcRect.X, npcRect.Y, npcRect.Width, npcRect.Height, loot.ItemID, loot.Quantity);
+                                    Item.NewItem(loot.ItemID, loot.Quantity, 
+                                    npcRect.X, npcRect.Y, 
+                                    npcRect.Width, npcRect.Height);
                                 }
                             }
 		            if (!string.IsNullOrEmpty(DeadMonster.CMType.DeathMessage))
