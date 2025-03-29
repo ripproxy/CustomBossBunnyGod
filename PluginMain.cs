@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Terraria;
 using TerrariaApi.Server;
+using Terraria.DataStructures;
 using TShockAPI;
 using TShockAPI.DB;
 using System.ComponentModel;
@@ -186,8 +187,10 @@ namespace CustomMonsters
                                 if (rand.Next() % loot.Rate == 0)
                                 {
                                     Rectangle npcRect = Main.npc[npcid].getRect();
+				    IEntitySource source = new
+	                            EntitySource_DebugCommand("LootDrop");
                                     Item.NewItem(
-                                    npc.GetSource_Loot(),
+                                    source,
                                     npcRect.X,
                                     npcRect.Y,
                                     npcRect.Width,
